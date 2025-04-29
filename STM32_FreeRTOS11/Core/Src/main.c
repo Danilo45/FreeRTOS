@@ -117,15 +117,17 @@ int main(void)
 
  // SEGGER_SYSVIEW_Start();
 
-  status = xTaskCreate(task1_handler, "Task-1", 200, "LED Green", 2, &task1_handle);
+  status = xTaskCreate(task1_handler, "Task-1", 200, NULL, 2, &task1_handle);
 
   configASSERT(status == pdPASS);
 
-  status = xTaskCreate(task2_handler, "Task-2", 200, "Led Orange", 2, &task2_handle);
+  status = xTaskCreate(task2_handler, "Task-2", 200, NULL, 2, &task2_handle);
 
   configASSERT(status == pdPASS);
 
-  status = xTaskCreate(task3_handler, "Task-3", 200, "Led RED", 2, &task3_handle);
+  status = xTaskCreate(task3_handler, "Task-3", 200, NULL, 2, &task3_handle);
+
+  configASSERT(status == pdPASS);
 
   //start the freeRTOS scheduler
   vTaskStartScheduler();
