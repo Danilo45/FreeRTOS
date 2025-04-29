@@ -339,32 +339,38 @@ static void MX_GPIO_Init(void)
 
 static void task1_handler(void* parameters)
 {
+  TickType_t xLastWakeUpTime;
+  xLastWakeUpTime = xTaskGetTickCount();
   while(1)
   {
     SEGGER_SYSVIEW_PrintfTarget("Toggling LED Green");
     HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    vTaskDelayUntil(&xLastWakeUpTime, pdMS_TO_TICKS(1000));
   }
 }
 
 
 static void task2_handler(void* parameters)
 {
+  TickType_t xLastWakeUpTime;
+  xLastWakeUpTime = xTaskGetTickCount();
   while(1)
   {
     SEGGER_SYSVIEW_PrintfTarget("Toggling LED Orange");
     HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
-    vTaskDelay(pdMS_TO_TICKS(800));
+    vTaskDelayUntil(&xLastWakeUpTime, pdMS_TO_TICKS(800));
   }
 }
 
 static void task3_handler(void* parameters)
 {
+  TickType_t xLastWakeUpTime;
+  xLastWakeUpTime = xTaskGetTickCount();
   while(1)
   {
     SEGGER_SYSVIEW_PrintfTarget("Toggling LED Red");
     HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
-    vTaskDelay(pdMS_TO_TICKS(400));
+    vTaskDelayUntil(&xLastWakeUpTime, pdMS_TO_TICKS(400));
   }
 
 }
